@@ -10,46 +10,53 @@ const val HOURS_PER_HUELL = 1.71666667
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var huells: EditText
+    private lateinit var hours : EditText
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val heulls: EditText = findViewById(R.id.heulls_text)
-        val units: EditText = findViewById(R.id.units_text)
+        huells = findViewById(R.id.huells_text)
+        hours = findViewById(R.id.hours_text)
 
-        heulls.addTextChangedListener(object : Watcher() {
+        huells.addTextChangedListener(object : Watcher() {
             override fun afterTextChanged(e: Editable?) {
-                if (currentFocus == heulls) {
-                    val text = e.toString()
-                    if (text == "") {
-                        units.setText("")
-                    } else {
-                        val value = text.toDouble() * HOURS_PER_HUELL
-                        units.setText(String.format("%.3f", value))
-                    }
-                }
+                if (currentFocus == huells) updateHours(e.toString())
             }
         })
 
-        units.addTextChangedListener(object : Watcher() {
+        hours.addTextChangedListener(object : Watcher() {
             override fun afterTextChanged(e: Editable?) {
-                if (currentFocus == units) {
-                    val text = e.toString()
-                    if (text == "") {
-                        heulls.setText("")
-                    } else {
-                        val value = text.toDouble() / HOURS_PER_HUELL
-                        heulls.setText(String.format("%.3f", value))
-                    }
-                }
+                if (currentFocus == hours) updateHuells(e.toString())
             }
         })
 
     }
 
+    fun updateHuells(hoursValue: String) {
+        if (hoursValue.isEmpty())
+            huells.setText("")
+        else
+            huells.setText(formatTime(hoursValue.toDouble() / HOURS_PER_HUELL))
+    }
+
+    fun updateHours(huellsValue: String) {
+        if (huellsValue == "")
+            hours.setText("")
+        else
+            hours.setText(formatTime(huellsValue.toDouble() * HOURS_PER_HUELL))
+    }
+
+    fun formatTime(value : Double) : String {
+        return String.format("%.3f", value)
+    }
+
 }
 
-abstract class Watcher : TextWatcher {
+abstract class Watcher: TextWatcher {
+
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
     }
 
