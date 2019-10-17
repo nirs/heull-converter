@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        hours.requestFocus()
     }
 
     fun updateHuells(hoursValue: String) {

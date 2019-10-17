@@ -34,22 +34,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hours_button" />
-
-    <EditText
-        android:id="@+id/huells_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:inputType="number|numberDecimal"
-        android:maxLength="20"
-        android:text="1.0"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/huells_button" />
+        app:layout_constraintTop_toBottomOf="@+id/hours_button"
+        android:nextFocusForward="@+id/huells_text" />
 
     <Button
         android:id="@+id/huells_button"
@@ -65,6 +51,22 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hours_text" />
+
+    <EditText
+        android:id="@+id/huells_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="number|numberDecimal"
+        android:maxLength="20"
+        android:text="1.0"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/huells_button"
+        android:nextFocusForward="@+id/hours_text" />
 
     <ImageView
         android:id="@+id/lavell_crawford"
