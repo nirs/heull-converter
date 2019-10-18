@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/lavell_crawford" />
 
     <TextView
-        android:id="@+id/hours_label"
+        android:id="@+id/interval_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -28,19 +28,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/hours_text"
+        android:id="@+id/interval_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:inputType="number|numberDecimal"
         android:maxLength="20"
-        android:text="1.71666667"
+        android:text="1.717"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hours_label"
+        app:layout_constraintTop_toBottomOf="@+id/interval_label"
         android:nextFocusForward="@+id/huells_text" />
 
     <TextView
@@ -54,7 +54,7 @@
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hours_text" />
+        app:layout_constraintTop_toBottomOf="@+id/interval_text" />
 
     <EditText
         android:id="@+id/huells_text"
@@ -64,12 +64,12 @@
         android:layout_marginEnd="24dp"
         android:inputType="number|numberDecimal"
         android:maxLength="20"
-        android:text="1.0"
+        android:text="1.000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/huells_label"
-        android:nextFocusForward="@+id/hours_text" />
+        android:nextFocusForward="@+id/interval_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
