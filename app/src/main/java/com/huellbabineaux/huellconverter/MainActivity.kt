@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         displayUnit = pref.displayUnit
         seconds = pref.seconds
 
-        intervalLabel.setText(displayUnit.name)
+        intervalLabel.text = displayUnit.name
         intervalText.requestFocus()
         updateIntervalText()
     }
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeDisplayUnit(unit: Units) {
         displayUnit = unit
-        intervalLabel.setText(unit.name)
+        intervalLabel.text = unit.name
         updateIntervalText()
     }
 
