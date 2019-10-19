@@ -8,7 +8,7 @@ import java.lang.IllegalArgumentException
 const val DISPLAY_UNIT = "displayUnit"
 const val SECONDS = "seconds"
 
-class Preferences(val pref: SharedPreferences) {
+class Preferences(private val pref: SharedPreferences) {
 
     var displayUnit = Units.HOURS  // Default
         get() {
