@@ -8,50 +8,40 @@ import java.lang.IllegalArgumentException
 const val DISPLAY_UNIT = "displayUnit"
 const val SECONDS = "seconds"
 
-class Preferences(
-    private val pref: SharedPreferences,
-    var displayUnit: Units,
-    var seconds: Double) {
+class Preferences(val pref: SharedPreferences) {
 
-    fun load() {
-        var value : String?
-
-        value = getString(DISPLAY_UNIT)
-        if (value != null) {
-            try {
-                displayUnit = Units.valueOf(value)
-                Log.d(LOG_KEY, "Loaded preferences %s=%s".format(DISPLAY_UNIT, displayUnit))
+    var displayUnit = Units.HOURS  // Default
+        get() {
+            return try {
+                Units.valueOf(getString(DISPLAY_UNIT, field.name))
             } catch (e: IllegalArgumentException) {
                 Log.w(LOG_KEY, "Invalid %s value: %s".format(DISPLAY_UNIT, e))
+                field
             }
         }
+        set(value) {
+            pref.edit().putString(DISPLAY_UNIT, value.name).apply()
+        }
 
-        value = getString(SECONDS)
-        if (value != null) {
-            try {
-                seconds = value.toDouble()
-                Log.d(LOG_KEY, "Loaded preferences %s=%s".format(SECONDS, seconds))
+    var seconds = secondsFrom(1.0, Units.HUELLS)  // Default
+        get() {
+            return try {
+                getString(SECONDS, field.toString()).toDouble()
             } catch (e: NumberFormatException) {
                 Log.w(LOG_KEY, "Invalid %s value: %s".format(SECONDS, e))
+                field
             }
         }
-    }
+        set(value) {
+            pref.edit().putString(SECONDS, value.toString()).apply()
+        }
 
-    fun save() {
-        Log.d(LOG_KEY, "Saving preferences %s=%s %s=%s"
-            .format(DISPLAY_UNIT, displayUnit, SECONDS, seconds))
-        pref.edit()
-            .putString(DISPLAY_UNIT, displayUnit.name)
-            .putString(SECONDS, seconds.toString())
-            .apply()
-    }
-
-    private fun getString(key: String) : String? {
+    private fun getString(key: String, defValue: String) : String {
         return try {
-            pref.getString(key, null)
+            pref.getString(key, defValue).orEmpty()
         } catch (e: ClassCastException) {
             Log.w(LOG_KEY, "Invalid %s string: %s".format(key, e))
-            null
+            defValue
         }
     }
 

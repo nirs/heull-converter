@@ -1,7 +1,6 @@
 package com.huellbabineaux.huellconverter
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var intervalText : EditText
     private lateinit var intervalLabel : TextView
 
-    private var displayUnit = Units.HOURS
-    private var seconds = secondsFrom(1.0, Units.HUELLS)
+    private lateinit var displayUnit : Units
+    private var seconds = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         val pref = getPreferences()
-        pref.load()
         displayUnit = pref.displayUnit
         seconds = pref.seconds
 
@@ -64,7 +62,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        getPreferences().save()
+
+        val pref = getPreferences()
+        pref.displayUnit = displayUnit
+        pref.seconds = seconds
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPreferences() : Preferences {
-        return Preferences(getPreferences(Context.MODE_PRIVATE), displayUnit, seconds)
+        return Preferences(getPreferences(Context.MODE_PRIVATE))
     }
 }
 
