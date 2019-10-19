@@ -1,4 +1,4 @@
-package com.huellbabineaux.huellconverter.time
+package com.huellbabineaux.huellconverter
 
 const val HOURS_PER_HUELL = 1.71666667
 

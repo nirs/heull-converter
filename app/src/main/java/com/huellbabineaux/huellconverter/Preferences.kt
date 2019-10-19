@@ -2,7 +2,6 @@ package com.huellbabineaux.huellconverter
 
 import android.content.SharedPreferences
 import android.util.Log
-import com.huellbabineaux.huellconverter.time.Units
 import java.lang.ClassCastException
 import java.lang.IllegalArgumentException
 

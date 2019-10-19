@@ -9,9 +9,6 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.huellbabineaux.huellconverter.time.Units
-import com.huellbabineaux.huellconverter.time.secondsFrom
-import com.huellbabineaux.huellconverter.time.secondsTo
 
 const val LOG_KEY = "HUEL_CONVERTER"
 
