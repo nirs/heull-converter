@@ -69,11 +69,6 @@ class MainActivity : AppCompatActivity() {
         getPreferences().save()
     }
 
-    private fun getPreferences() : Preferences {
-        val pref = getSharedPreferences(packageName, Context.MODE_PRIVATE)
-        return Preferences(pref, displayUnit, seconds)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.options, menu)
         return true
@@ -97,29 +92,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun changeDisplayUnit(unit: Units) {
+    private fun changeDisplayUnit(unit: Units) {
         displayUnit = unit
         intervalLabel.setText(unit.name)
         updateIntervalText()
     }
 
-    fun changeSeconds(text: String, unit: Units) {
+    private fun changeSeconds(text: String, unit: Units) {
         seconds = when (text) {
             "" -> 0.0
             else -> secondsFrom(text.toDouble(), unit)
         }
     }
 
-    fun updateIntervalText() {
+    private fun updateIntervalText() {
         intervalText.setText(formatTime(secondsTo(seconds, displayUnit)))
     }
 
-    fun updateHuellsText() {
+    private fun updateHuellsText() {
         huellsText.setText(formatTime(secondsTo(seconds, Units.HUELLS)))
     }
 
-    fun formatTime(value : Double) : String {
+    private fun formatTime(value : Double) : String {
         return String.format("%.3f", value)
+    }
+
+    private fun getPreferences() : Preferences {
+        val pref = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        return Preferences(pref, displayUnit, seconds)
     }
 
 }
