@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="56dp"
-        android:text="Hours"
+        android:text="@string/hours"
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,15 +33,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:hint="@string/convert_hint"
         android:inputType="number|numberDecimal"
         android:maxLength="20"
-        android:text="1.717"
+        android:nextFocusForward="@+id/huells_text"
+        android:text="@string/default_interval"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/interval_label"
-        android:nextFocusForward="@+id/huells_text" />
+        app:layout_constraintTop_toBottomOf="@+id/interval_label" />
 
     <TextView
         android:id="@+id/huells_label"
@@ -50,7 +51,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:clickable="false"
-        android:text="Huells"
+        android:text="@string/huells"
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,14 +63,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:hint="@string/convert_hint"
         android:inputType="number|numberDecimal"
         android:maxLength="20"
-        android:text="1.000"
+        android:nextFocusForward="@+id/interval_text"
+        android:text="@string/default_huells"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/huells_label"
-        android:nextFocusForward="@+id/interval_text" />
+        app:layout_constraintTop_toBottomOf="@+id/huells_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

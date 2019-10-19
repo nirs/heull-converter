@@ -3,4 +3,8 @@
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
     <string name="seconds">Seconds</string>
+    <string name="huells">Huells</string>
+    <string name="default_interval">1.717</string>
+    <string name="default_huells">1.000</string>
+    <string name="convert_hint">Enter value to convert</string>
 </resources>
