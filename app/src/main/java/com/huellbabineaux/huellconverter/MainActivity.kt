@@ -13,7 +13,7 @@ import com.huellbabineaux.huellconverter.time.Units
 import com.huellbabineaux.huellconverter.time.secondsFrom
 import com.huellbabineaux.huellconverter.time.secondsTo
 
-val LOG_KEY = "HUEL_CONVERTER"
+const val LOG_KEY = "HUEL_CONVERTER"
 
 class MainActivity : AppCompatActivity() {
 
@@ -121,7 +121,6 @@ class MainActivity : AppCompatActivity() {
         val pref = getSharedPreferences(packageName, Context.MODE_PRIVATE)
         return Preferences(pref, displayUnit, seconds)
     }
-
 }
 
 abstract class Watcher: TextWatcher {

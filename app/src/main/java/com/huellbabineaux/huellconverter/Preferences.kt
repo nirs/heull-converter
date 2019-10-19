@@ -6,8 +6,8 @@ import com.huellbabineaux.huellconverter.time.Units
 import java.lang.ClassCastException
 import java.lang.IllegalArgumentException
 
-val DISPLAY_UNIT = "displayUnit"
-val SECONDS = "seconds"
+const val DISPLAY_UNIT = "displayUnit"
+const val SECONDS = "seconds"
 
 class Preferences(
     private val pref: SharedPreferences,
@@ -35,7 +35,6 @@ class Preferences(
             } catch (e: NumberFormatException) {
                 Log.w(LOG_KEY, "Invalid %s value: %s".format(SECONDS, e))
             }
-
         }
     }
 
