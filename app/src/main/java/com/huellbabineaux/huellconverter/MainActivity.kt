@@ -1,6 +1,7 @@
 package com.huellbabineaux.huellconverter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -115,8 +116,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPreferences() : Preferences {
-        val pref = getSharedPreferences(packageName, Context.MODE_PRIVATE)
-        return Preferences(pref, displayUnit, seconds)
+        return Preferences(getPreferences(Context.MODE_PRIVATE), displayUnit, seconds)
     }
 }
 
