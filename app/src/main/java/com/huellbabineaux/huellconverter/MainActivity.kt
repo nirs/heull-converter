@@ -1,6 +1,6 @@
 package com.huellbabineaux.huellconverter
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,9 +8,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.huellbabineaux.huellconverter.time.Units
 import com.huellbabineaux.huellconverter.time.secondsFrom
 import com.huellbabineaux.huellconverter.time.secondsTo
-import com.huellbabineaux.huellconverter.time.Units
+
+val LOG_KEY = "HUEL_CONVERTER"
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,9 +49,29 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
 
+    override fun onStart() {
+        super.onStart()
+
+        val pref = getPreferences()
+        pref.load()
+        displayUnit = pref.displayUnit
+        seconds = pref.seconds
+
+        intervalLabel.setText(displayUnit.name)
         intervalText.requestFocus()
         updateIntervalText()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        getPreferences().save()
+    }
+
+    private fun getPreferences() : Preferences {
+        val pref = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        return Preferences(pref, displayUnit, seconds)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -76,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     fun changeDisplayUnit(unit: Units) {
         displayUnit = unit
-        intervalLabel.setText(unit.toString())
+        intervalLabel.setText(unit.name)
         updateIntervalText()
     }
 
