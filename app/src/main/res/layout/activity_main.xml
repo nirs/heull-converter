@@ -12,7 +12,8 @@
         android:layout_height="244dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/lavell_crawford" />
+        app:srcCompat="@drawable/lavell_crawford"
+        android:contentDescription="@string/lavell_crawford_description" />
 
     <TextView
         android:id="@+id/interval_label"

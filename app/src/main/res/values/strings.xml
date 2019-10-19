@@ -7,4 +7,5 @@
     <string name="default_interval">1.717</string>
     <string name="default_huells">1.000</string>
     <string name="convert_hint">Enter value to convert</string>
+    <string name="lavell_crawford_description">Lavell Crawford picture</string>
 </resources>
