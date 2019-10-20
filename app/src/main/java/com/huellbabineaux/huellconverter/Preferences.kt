@@ -6,7 +6,7 @@ import java.lang.ClassCastException
 import java.lang.IllegalArgumentException
 
 const val DISPLAY_UNIT = "displayUnit"
-const val SECONDS = "seconds"
+const val INTERVAL = "interval"
 
 class Preferences(private val pref: SharedPreferences) {
 
@@ -23,17 +23,17 @@ class Preferences(private val pref: SharedPreferences) {
             pref.edit().putString(DISPLAY_UNIT, value.name).apply()
         }
 
-    var seconds = secondsFrom(1.0, Units.HUELLS)  // Default
+    var interval = Interval(1.0, Units.HUELLS)  // Default
         get() {
             return try {
-                getString(SECONDS, field.toString()).toDouble()
+                Interval(getString(INTERVAL, field.toString()))
             } catch (e: NumberFormatException) {
-                Log.w(LOG_KEY, "Invalid %s value: %s".format(SECONDS, e))
+                Log.w(LOG_KEY, "Invalid %s value: %s".format(INTERVAL, e))
                 field
             }
         }
         set(value) {
-            pref.edit().putString(SECONDS, value.toString()).apply()
+            pref.edit().putString(INTERVAL, value.toString()).apply()
         }
 
     private fun getString(key: String, defValue: String) : String {

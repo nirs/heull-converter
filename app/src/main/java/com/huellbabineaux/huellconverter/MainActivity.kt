@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var intervalText : EditText
     private lateinit var intervalLabel : TextView
 
-    private lateinit var displayUnit : Units
-    private var seconds = 0.0
+    private lateinit var displayUnit: Units
+    private lateinit var interval: Interval
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         huellsText.addTextChangedListener(object : Watcher() {
             override fun afterTextChanged(e: Editable?) {
                 if (currentFocus == huellsText) {
-                    changeSeconds(e.toString(), Units.HUELLS)
+                    changeInterval(e.toString(), Units.HUELLS)
                     updateIntervalText()
                 }
             }
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         intervalText.addTextChangedListener(object : Watcher() {
             override fun afterTextChanged(e: Editable?) {
                 if (currentFocus == intervalText) {
-                    changeSeconds(e.toString(), displayUnit)
+                    changeInterval(e.toString(), displayUnit)
                     updateHuellsText()
                 }
             }
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         val pref = getPreferences()
         displayUnit = pref.displayUnit
-        seconds = pref.seconds
+        interval = pref.interval
 
         intervalLabel.text = displayUnit.name
         intervalText.requestFocus()
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         val pref = getPreferences()
         pref.displayUnit = displayUnit
-        pref.seconds = seconds
+        pref.interval = interval
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,19 +97,19 @@ class MainActivity : AppCompatActivity() {
         updateIntervalText()
     }
 
-    private fun changeSeconds(text: String, unit: Units) {
-        seconds = when (text) {
-            "" -> 0.0
-            else -> secondsFrom(text.toDouble(), unit)
+    private fun changeInterval(text: String, unit: Units) {
+        interval = when (text) {
+            "" -> Interval(0.0)
+            else -> Interval(text, unit)
         }
     }
 
     private fun updateIntervalText() {
-        intervalText.setText(formatTime(secondsTo(seconds, displayUnit)))
+        intervalText.setText(formatTime(interval.toUnit(displayUnit)))
     }
 
     private fun updateHuellsText() {
-        huellsText.setText(formatTime(secondsTo(seconds, Units.HUELLS)))
+        huellsText.setText(formatTime(interval.toUnit(Units.HUELLS)))
     }
 
     private fun formatTime(value : Double) : String {
