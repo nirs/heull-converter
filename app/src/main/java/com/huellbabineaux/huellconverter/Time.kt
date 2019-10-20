@@ -6,7 +6,7 @@ enum class Units {
     HOURS, MINUTES, SECONDS, HUELLS
 }
 
-fun secondsFrom(value: Double, unit: Units) = when(unit) {
+fun secondsFrom(value: Double, unit: Units) : Double = when(unit) {
     Units.HUELLS -> value * HOURS_PER_HUELL * 3600
     Units.HOURS -> value * 3600
     Units.MINUTES -> value * 60
